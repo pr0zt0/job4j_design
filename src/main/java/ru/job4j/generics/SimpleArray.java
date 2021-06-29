@@ -1,8 +1,6 @@
 package ru.job4j.generics;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class SimpleArray<T> implements Iterable<T> {
     private T[] arr;
@@ -36,7 +34,22 @@ public class SimpleArray<T> implements Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        List<T> list = Stream.of(arr).collect(Collectors.toList());
-        return list.iterator();
+        return new Iterator<T>() {
+            private final T[] data = arr;
+            private int point = 0;
+
+            @Override
+            public boolean hasNext() {
+                return point < data.length;
+            }
+
+            @Override
+            public T next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                return data[point++];
+            }
+        };
     }
 }
