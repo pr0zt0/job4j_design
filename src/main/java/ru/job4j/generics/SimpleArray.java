@@ -40,7 +40,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
             @Override
             public boolean hasNext() {
-                return point < data.length;
+                return point < size;
             }
 
             @Override
