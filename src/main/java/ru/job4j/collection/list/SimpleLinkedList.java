@@ -24,7 +24,6 @@ public class SimpleLinkedList<E> implements List<E> {
             nodeLast.nodeNext = newNode;
         }
         nodeLast = newNode;
-      //  newNode.index = size;
         size++;
         modCount++;
     }
@@ -33,7 +32,7 @@ public class SimpleLinkedList<E> implements List<E> {
     public E get(int index) {
         Objects.checkIndex(index, size);
         Node<E> node = nodeFirst;
-        for (int i = 0; i <= index; i++) {
+        for (int i = 0; i < index; i++) {
             node = node.nodeNext;
         }
         return node.getData();
