@@ -26,12 +26,12 @@ public class ForwardLinked<T> implements Iterable<T> {
     }
 
     public T deleteFirst() {
-        Node<T> node = head;
-        if (head != null) {
-            head = head.next;
-            return node.value;
+        if (head == null) {
+            throw new NoSuchElementException();
         }
-        throw new NoSuchElementException();
+        Node<T> node = head;
+        head = head.next;
+        return node.value;
     }
 
     public boolean revert() {
@@ -39,14 +39,13 @@ public class ForwardLinked<T> implements Iterable<T> {
             return false;
         }
         Node<T> curr = head;
-        Node<T> futr = curr.next;
         Node<T> pr = null;
-
+        Node<T> future;
         while (curr != null) {
-            futr = curr.next;
+            future = curr.next;
             curr.next = pr;
             pr = curr;
-            curr = futr;
+            curr = future;
         }
         head = pr;
         return true;
