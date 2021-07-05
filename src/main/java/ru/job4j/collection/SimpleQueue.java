@@ -1,35 +1,27 @@
 package ru.job4j.collection;
 
-import java.util.NoSuchElementException;
-
 public class SimpleQueue<T> {
     private final SimpleStack<T> in = new SimpleStack<>();
     private final SimpleStack<T> out = new SimpleStack<>();
-    private int size = 0;
-
-    private void regroupData(SimpleStack<T> f, SimpleStack<T> d) {
-        int temp = size;
-        while (temp != 0) {
-            d.push(f.pop());
-            temp--;
-        }
-    }
+    private int sizeIn = 0;
+    private int sizeOut = 0;
 
     public T poll() {
-        if (size == 0) {
-            throw new NoSuchElementException();
+        T data;
+        if (sizeOut == 0) {
+            while (sizeIn != 0) {
+                out.push(in.pop());
+                sizeIn--;
+                sizeOut++;
+            }
         }
-        regroupData(in, out);
-        size--;
-        T data = out.pop();
-        if (size != 0) {
-            regroupData(out, in);
-        }
+        sizeOut--;
+        data = out.pop();
         return data;
     }
 
     public void push(T value) {
         in.push(value);
-        size++;
+        sizeIn++;
     }
 }
