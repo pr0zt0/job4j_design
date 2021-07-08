@@ -9,30 +9,34 @@ public class User {
     private int children;
     private Calendar birthday;
 
-    public User(String name, int children, Calendar birthday) {
+    public User(String name, int children, int year, int month) {
         this.name = name;
         this.children = children;
-        this.birthday = birthday;
+        this.birthday = configDay(year, month);
+    }
+
+    private Calendar configDay(int year, int month) {
+        Calendar bDay = Calendar.getInstance();
+        bDay.set(Calendar.YEAR, year);
+        bDay.set(Calendar.MONTH, month);
+        return bDay;
     }
 
     public static void main(String[] args) {
-        Calendar usDate = Calendar.getInstance();
-        usDate.set(Calendar.YEAR, 2000);
-        usDate.set(Calendar.MONTH, 4);
-        User us1 = new User("Bob", 2, usDate);
-
-        Calendar usDate2 = Calendar.getInstance();
-        usDate.set(Calendar.YEAR, 1893);
-        usDate.set(Calendar.MONTH, 1);
-        User us2 = new User("Tom", 0, usDate2);
-
+        User us1 = new User("Bob", 2, 2000, 2);
+        User us2 = new User("Bob", 2, 2000, 2);
+        Object obj1 = new Object();
+        Object obj2 = new Object();
         Map<User, Object> map = new HashMap<>();
-        map.put(us1, new Object());
-        map.put(us2, new Object());
+        map.put(us1, obj1);
+        map.put(us2, obj2);
         for (Map.Entry<User, Object> it : map.entrySet()) {
             System.out.println("Key : " + it.getKey() + " value: " + it.getValue());
         }
-        System.out.println(us1.hashCode());
-        System.out.println(us2.hashCode());
+        System.out.println("First user: " + us1.hashCode());
+        System.out.println("Second user: " + us2.hashCode());
+        System.out.println();
+        System.out.println(obj1.hashCode());
+        System.out.println(obj2.hashCode());
     }
 }
