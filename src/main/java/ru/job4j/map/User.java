@@ -10,17 +10,10 @@ public class User {
     private int children;
     private Calendar birthday;
 
-    public User(String name, int children, int year, int month) {
+    public User(String name, int children, Calendar birthday) {
         this.name = name;
         this.children = children;
-        this.birthday = configDay(year, month);
-    }
-
-    private Calendar configDay(int year, int month) {
-        Calendar bDay = Calendar.getInstance();
-        bDay.set(Calendar.YEAR, year);
-        bDay.set(Calendar.MONTH, month);
-        return bDay;
+        this.birthday = birthday;
     }
 
     @Override
@@ -29,8 +22,12 @@ public class User {
     }
 
     public static void main(String[] args) {
-        User us1 = new User("Bob", 2, 2000, 2);
-        User us2 = new User("Bob", 2, 2000, 2);
+        Calendar cl = Calendar.getInstance();
+        cl.set(Calendar.YEAR, 2000);
+        cl.set(Calendar.MONTH, 2);
+
+        User us1 = new User("Bob", 2, cl);
+        User us2 = new User("Bob", 2, cl);
         Object obj1 = new Object();
         Object obj2 = new Object();
         Map<User, Object> map = new HashMap<>();
