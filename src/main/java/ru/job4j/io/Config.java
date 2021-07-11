@@ -2,6 +2,8 @@ package ru.job4j.io;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOError;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -31,21 +33,13 @@ public class Config {
                             s -> s.substring(0, s.indexOf("=")),
                             s -> s.substring(s.lastIndexOf("=") + 1)
                     ));
-        } catch (IllegalArgumentException e) {
-            throw e;
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public String value(String key) {
-        for (String st : values.keySet()
-        ) {
-            if (key.equals(st)) {
-                return values.get(st);
-            }
-        }
-        return null;
+        return values.get(key);
     }
 
     @Override
