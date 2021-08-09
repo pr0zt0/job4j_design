@@ -17,7 +17,7 @@ public class ConfigTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenWrongMatches(){
+    public void whenWrongMatches() {
         String path = "./data/wrong.properties";
         Config config = new Config(path);
         config.load();
