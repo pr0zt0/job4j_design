@@ -23,8 +23,7 @@ public class Config {
             values = read.lines()
                     .filter(s -> s.contains("="))
                     .peek(s -> {
-                                if (!s.matches(".*[^\s]=.*[^\s]")
-                                        || s.startsWith("=") || s.endsWith("=")) {
+                                if (s.startsWith("=") || s.endsWith("=")) {
                                     throw new IllegalArgumentException();
                                 }
                             }
