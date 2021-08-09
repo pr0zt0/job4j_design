@@ -1,6 +1,10 @@
 package ru.job4j.tree;
 
+import org.checkerframework.checker.nullness.Opt;
+
 import java.util.*;
+import java.util.function.Predicate;
+
 
 public class SimpleTree<E> implements Tree<E> {
     private final Node<E> root;
@@ -24,16 +28,29 @@ public class SimpleTree<E> implements Tree<E> {
     @Override
     public Optional<Node<E>> findBy(E value) {
         Optional<Node<E>> rsl = Optional.empty();
+        Optional<Node> els = findByPredicate(el -> el.value.equals(value));
+        if (els.isEmpty()) {
+            return  rsl;
+        } else {
+            return Optional.of(els.get());
+        }
+    }
+
+    public boolean isBinary() {
+        return findByPredicate(val -> val.children.size() > 2).isEmpty();
+    }
+
+    private Optional<Node> findByPredicate(Predicate<Node<E>> condition) {
         Queue<Node<E>> data = new LinkedList<>();
         data.offer(this.root);
         while (!data.isEmpty()) {
             Node<E> el = data.poll();
-            if (el.value.equals(value)) {
-                rsl = Optional.of(el);
-                break;
+            if (condition.test(el)) {
+                return Optional.of(el);
             }
             data.addAll(el.children);
         }
-        return rsl;
+        return Optional.empty();
     }
+
 }
