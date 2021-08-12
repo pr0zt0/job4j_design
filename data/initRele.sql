@@ -57,8 +57,8 @@ drop table if exists "public".t_human;
 
 create table "public".t_human
 (
-    id uuid not null default uuid_generate_v4(),
-    full_name not null varchar(255) set latin,
+    id uuid default uuid_generate_v4(),
+    full_name varchar(255) not null,
     primary key(id)
 );
 
@@ -76,10 +76,10 @@ drop table if exists "public".t_workstation;
 
 create table "public".t_workstation
 (
-    id uuid not null default uuid_generate_v4(),
+    id uuid  default uuid_generate_v4(),
     number bigint not null,
-    qr_code blob,
-    position not null varchar(5),
+    qr_code bytea,
+    position varchar(5) not null,
     primary key(id)
 );
 
