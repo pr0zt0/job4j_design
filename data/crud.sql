@@ -21,11 +21,10 @@ select
 
 update "public".t_test
 set c_second = 'new_message'
-where 1=1
-and c_first = 123;
+explain select * from "public".t_test
+where c_first = 123;
 
 delete from "public".t_test
-where 1=1
-and c_first = 123;
+where c_first = 123;
 
 commit;
