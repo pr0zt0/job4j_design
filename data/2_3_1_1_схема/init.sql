@@ -1,0 +1,1 @@
+create schema if not exists "simple_app" authorization current_user;
