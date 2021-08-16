@@ -48,3 +48,24 @@ insert into students(name, course, budget, speciality, enroll_date, university_i
 insert into students(name, course, budget, speciality, enroll_date, university_id) values ('EH', 3, false, 'I5', date '2018-09-01', 5);
 insert into students(name, course, budget, speciality, enroll_date, university_id) values ('EJ', 4, true, 'J5', date '2017-09-01', 5);
 insert into students(name, course, budget, speciality, enroll_date, university_id) values ('EI', 5, true, 'K5', date '2016-09-01', 5);
+
+
+select
+    s.name || ' Bob' as fullname
+from students s
+join universities u
+on s.university_id = u.id;
+
+
+select
+    s.name || ' study on ' ||  u.name as infoStudy
+from students s
+join universities u
+on s.university_id = u.id;
+
+select count(*) as totalBudgetStudents,  university_id
+from students s
+join universities u
+on s.university_id = u.id
+where budget = true
+group by university_id;
