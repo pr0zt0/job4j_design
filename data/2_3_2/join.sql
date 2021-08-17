@@ -61,11 +61,11 @@ from departments d
 left  join employees e
 on d.id = e.dep_id
 where e.id is not null
-union all
+
 select *
 from departments d
 right  join employees e
-on d.id = e.dep_id;
+on d.id = e.dep_id
 
 -- 5
 create table teens
@@ -84,3 +84,4 @@ values
 
 select o1.gender || ' = ' || o2.gender as pare
 from teens o1 cross join teens o2
+where o1.gender <> o2.gender;
