@@ -13,12 +13,12 @@ where name like '%мороженое%';
 -- 3
 select *
 from product
-where expired_date = true;
+where expired_date < current_date;
 
 -- 4
-select max(price), name
+select name, price
 from product
-group by name;
+where price in (select max(price) from product);
 
 -- 5
 select t.name, count(p.name)
