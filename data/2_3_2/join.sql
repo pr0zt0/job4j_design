@@ -57,15 +57,14 @@ where e.id is null;
 
 -- 4
 select *
-from departments d
-left  join employees e
-on d.id = e.dep_id
-where e.id is not null
+from employees e
+left join departments d
+on d.id = e.dep_id;
 
 select *
 from departments d
 right  join employees e
-on d.id = e.dep_id
+on d.id = e.dep_id;
 
 -- 5
 create table teens
