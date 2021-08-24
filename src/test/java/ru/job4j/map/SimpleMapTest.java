@@ -2,8 +2,6 @@ package ru.job4j.map;
 
 import org.hamcrest.core.Is;
 import org.junit.Test;
-import ru.job4j.collection.list.List;
-import ru.job4j.collection.list.SimpleLinkedList;
 
 import java.util.Iterator;
 
