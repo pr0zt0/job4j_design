@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.Iterator;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 public class SimpleMapTest {
     @Test
@@ -31,6 +31,14 @@ public class SimpleMapTest {
         simpleMap.put(2, 3);
         assertThat(simpleMap.get(1), is(Integer.valueOf(2)));
         assertThat(simpleMap.get(2), is(Integer.valueOf(3)));
+    }
+
+    @Test
+    public void whenGetNotIncludeNumber() {
+        SimpleMap<Integer, Integer> simpleMap = new SimpleMap();
+        simpleMap.put(1, 2);
+        simpleMap.put(2, 3);
+        assertNull(simpleMap.get(4));
     }
 
     @Test

@@ -35,12 +35,6 @@ public class SimpleMap<K, V> implements Map<K, V> {
                 table[index].value = value;
                 return true;
             }
-            for (int i = index; i < table.length; i++) {
-                if (table[i] == null) {
-                    enterEl(key, value, index);
-                    return true;
-                }
-            }
         }
         return false;
     }
@@ -65,7 +59,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
         table = new MapEntry[oldTable.length * 2];
         count = 0;
         modCount = 0;
-        for (MapEntry<K, V> el: oldTable) {
+        for (MapEntry<K, V> el : oldTable) {
             if (el != null) {
                 put(el.key, el.value);
             }
@@ -80,11 +74,8 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
         MapEntry<K, V> el = table[index];
 
-        while (el != null && index < table.length) {
-            if (el.key.equals(key)) {
-                return el.value;
-            }
-            index++;
+        if (el != null && el.key.equals(key)) {
+            return el.value;
         }
 
         return null;
