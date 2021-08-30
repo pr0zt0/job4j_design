@@ -11,11 +11,16 @@ import static java.nio.file.FileVisitResult.CONTINUE;
 
 public class Search {
     public static void main(String[] args) throws IOException {
-        Path startNew = Paths.get(".");
+        if (args.length != 2) {
+            throw new IllegalArgumentException("Enter root folder and extension file");
+        }
+        String pathStart = args[0];
+        String extFind = args[1];
+        Path startNew = Paths.get(pathStart);
         Files.walkFileTree(startNew, new PrintFiles());
         System.out.println();
         Path start = Paths.get(".");
-        search(start, p -> p.toFile().getName().endsWith("js")).forEach(System.out::println);
+        search(start, p -> p.toFile().getName().endsWith(extFind)).forEach(System.out::println);
     }
 
     public static List<Path> search(Path root, Predicate<Path> condition) throws IOException {
