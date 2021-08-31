@@ -20,7 +20,6 @@ public class Zip {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public static void packSingleFile(File source, File target) {
@@ -43,6 +42,5 @@ public class Zip {
         packFiles(Search.search(Path.of(argsName.get("d")),
                 path -> path.toFile().getName().endsWith(argsName.get("e").replace('*', ' ').trim())
         ), new File(argsName.get("o")));
-
     }
 }
