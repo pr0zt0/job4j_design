@@ -2,8 +2,10 @@ package ru.job4j.collection;
 
 import java.util.*;
 
+@SuppressWarnings({"unsafe", "unchecked"})
 public class SimpleArray<T> implements Iterable<T> {
     private T[] container = (T[]) new Object[]{};
+
     private int size = 0;
     private int modCount = 0;
 
@@ -21,11 +23,12 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     @Override
+    @SuppressWarnings("unsafe")
     public Iterator<T> iterator() {
         return new Iterator<T>() {
             private final T[] data = container;
             private int point = 0;
-            private int exModCount = modCount;
+            private final int exModCount = modCount;
 
             @Override
             public boolean hasNext() {

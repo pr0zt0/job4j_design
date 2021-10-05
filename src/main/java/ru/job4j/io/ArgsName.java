@@ -20,7 +20,7 @@ public class ArgsName {
             if (arrs.length != 2) {
                 throw new IllegalArgumentException("Wrong input key jvm");
             }
-            String key = arrs[0].replace('-', ' ').trim();
+            String key = arrs[0].substring(1);
             String val = arrs[1];
             values.put(key, val);
         }
