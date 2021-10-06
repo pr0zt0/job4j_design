@@ -14,7 +14,10 @@ public class ArgsName {
         return values.get(key);
     }
 
-    private void parse(String[] args) {
+    private void parse(String[] args) throws Exception {
+        if (args.length == 0) {
+            throw new Exception("Empty key value");
+        }
         for (String s: args) {
             String[] arrs = s.split("=");
             if (arrs.length != 2) {
@@ -28,7 +31,11 @@ public class ArgsName {
 
     public static ArgsName of(String[] args) {
         ArgsName names = new ArgsName();
-        names.parse(args);
+        try {
+            names.parse(args);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return names;
     }
 
