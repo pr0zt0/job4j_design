@@ -14,9 +14,9 @@ public class ArgsName {
         return values.get(key);
     }
 
-    private void parse(String[] args) throws Exception {
+    private void parse(String[] args) {
         if (args.length == 0) {
-            throw new Exception("Empty key value");
+            throw new NullPointerException("Empty key value");
         }
         for (String s: args) {
             String[] arrs = s.split("=");
@@ -31,11 +31,7 @@ public class ArgsName {
 
     public static ArgsName of(String[] args) {
         ArgsName names = new ArgsName();
-        try {
-            names.parse(args);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        names.parse(args);
         return names;
     }
 

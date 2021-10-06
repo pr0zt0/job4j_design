@@ -19,7 +19,7 @@ public class ArgsNameTest {
         assertThat(jvm.get("Xmx"), is("512"));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void whenGetNotExist() {
         ArgsName jvm = ArgsName.of(new String[] {});
         jvm.get("Xmx");
