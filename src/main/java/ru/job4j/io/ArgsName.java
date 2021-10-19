@@ -20,7 +20,7 @@ public class ArgsName {
         }
         for (String s: args) {
             String[] arrs = s.split("=");
-            if (arrs.length != 2) {
+            if (arrs.length != 2 || !s.matches("-\\S+=\\S+")) {
                 throw new IllegalArgumentException("Wrong input key jvm");
             }
             String key = arrs[0].substring(1);
