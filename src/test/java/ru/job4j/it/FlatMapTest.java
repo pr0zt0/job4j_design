@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -53,6 +54,7 @@ public class FlatMapTest {
     }
 
     @Test(expected = NoSuchElementException.class)
+    @SuppressWarnings("unchecked")
     public void whenEmpty() {
         Iterator<Iterator<Object>> data = List.of(
                 List.of().iterator()
@@ -62,6 +64,7 @@ public class FlatMapTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void whenSeveralEmptyAndNotEmpty() {
         Iterator<Iterator<?>> it = List.of(
                 List.of().iterator(),
@@ -75,6 +78,7 @@ public class FlatMapTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void whenSeveralEmptyThenReturnFalse() {
         Iterator<Iterator<Object>> it = List.of(
                 List.of().iterator(),

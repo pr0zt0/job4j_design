@@ -5,7 +5,7 @@ import org.checkerframework.checker.nullness.Opt;
 import java.util.*;
 import java.util.function.Predicate;
 
-
+@SuppressWarnings("unchecked")
 public class SimpleTree<E> implements Tree<E> {
     private final Node<E> root;
 

@@ -6,6 +6,7 @@ public class SimpleArray<T> implements Iterable<T> {
     private T[] arr;
     private int size = 0;
 
+    @SuppressWarnings("unchecked")
     public SimpleArray(int size) {
         this.arr = (T[]) new Object[size];
     }
