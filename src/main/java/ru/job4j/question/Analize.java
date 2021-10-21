@@ -11,8 +11,8 @@ public class Analize {
         Set<User> temp = new HashSet<>(previous);
         Map<Integer, String> map = new HashMap<>();
 
-        for (User us : current) {
-            map.put(us.getId(), us.getName());
+        for (User user : current) {
+            map.put(user.getId(), user.getName());
         }
 
         for (User user : previous) {
