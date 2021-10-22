@@ -11,7 +11,7 @@ public class CSVReader {
                 && new File(argsName.get("out")).isDirectory()) {
             throw new IllegalArgumentException("wrong -out key");
         }
-        Scanner sc = new Scanner(new FileInputStream(argsName.get("path"))).useDelimiter("\r\n");
+        Scanner sc = new Scanner(new FileInputStream(argsName.get("path"))).useDelimiter(System.lineSeparator());
         while (sc.hasNext()) {
             data.add(sc.next().split(argsName.get("delimiter")));
         }
@@ -30,6 +30,12 @@ public class CSVReader {
             dataShow.add(joiner.toString());
         }
         showCSVFile(dataShow, argsName.get("out"));
+    }
+
+    public static void main(String[] args) throws Exception {
+        CSVReader.handle(ArgsName.of(new String[]{
+                "-path=file.csv", "-delimiter=;", "-out=stdout", "-filter=name,age"
+        }));
     }
 
     private static void showCSVFile(List<String> data, String path) {

@@ -8,6 +8,7 @@ import java.util.Iterator;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
+@SuppressWarnings("unchecked")
 public class SimpleMapTest {
     @Test
     public void whenAdd() {
