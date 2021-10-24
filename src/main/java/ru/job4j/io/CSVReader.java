@@ -5,15 +5,18 @@ import java.nio.charset.Charset;
 import java.util.*;
 
 public class CSVReader {
-    public static void handle(ArgsName argsName) throws Exception {
+    public static void handle(ArgsName argsName) {
         List<String[]> data = new ArrayList<>();
         if (!argsName.get("out").equals("stdout")
                 && new File(argsName.get("out")).isDirectory()) {
             throw new IllegalArgumentException("wrong -out key");
         }
-        Scanner sc = new Scanner(new FileInputStream(argsName.get("path"))).useDelimiter(System.lineSeparator());
-        while (sc.hasNext()) {
-            data.add(sc.next().split(argsName.get("delimiter")));
+        try (Scanner sc = new Scanner(new FileInputStream(argsName.get("path"))).useDelimiter(System.lineSeparator())) {
+            while (sc.hasNext()) {
+                data.add(sc.next().split(argsName.get("delimiter")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         List<String> correctWords = List.of(argsName.get("filter").split(","));
         List<Integer> positions = new ArrayList<>();
