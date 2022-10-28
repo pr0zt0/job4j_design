@@ -35,7 +35,7 @@ begin
 	return new;
 end;
 $$
-language 'plpgsql'
+language 'plpgsql';
 
 create trigger tax_pay_after
 after insert
@@ -65,12 +65,12 @@ declare
 	tax int2 := 20;
 begin
 
-	new.price = new.price + 20;
+	new.price = new.price + tax;
 
 	return new;
 end;
 $$
-language 'plpgsql'
+language 'plpgsql';
 
 
 create trigger tax_pay_before
@@ -113,7 +113,7 @@ begin
 	return new;
 end;
 $$
-language 'plpgsql'
+language 'plpgsql';
 
 
 create trigger save_price
