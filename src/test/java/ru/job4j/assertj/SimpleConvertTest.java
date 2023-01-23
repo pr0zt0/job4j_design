@@ -40,7 +40,7 @@ class SimpleConvertTest {
 
         assertThat(set)
                 .hasSize(2)
-                .allSatisfy(e->{
+                .allSatisfy(e -> {
                     assertThat(e).doesNotContain("a");
                 })
                 .noneMatch(e -> e.length() == 0);
